@@ -6,6 +6,7 @@ import {configureStore} from '@reduxjs/toolkit';
 
 // Importing the User reducer from the ./reducers/User file
 import User from './reducers/User';
+// import {logger} from 'redux-logger';
 
 // Creating a rootReducer that combines all reducers in the app
 
@@ -18,6 +19,9 @@ const rootReducer = combineReducers({
 // We're passing in the rootReducer as the main reducer for the store
 const store = configureStore({
   reducer: rootReducer,
+  // middleware: getDefaultMiddleware => {
+  //   return getDefaultMiddleware().concat(logger);
+  // },
 });
 
 // Exporting the store to be used in the app
