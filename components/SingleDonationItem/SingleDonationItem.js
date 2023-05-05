@@ -11,11 +11,25 @@ const SingleDonationItem = props => {
   return (
     <View>
       <View>
-        <Badge title={props.badgeTitle} />
-        <Image source={{uri: props.uri}} style={style.image} />
+        <View style={style.badge}>
+          <Badge title={props.badgeTitle} />
+        </View>
+        <Image
+          resizeMode={'contain'}
+          source={{uri: props.uri}}
+          style={style.image}
+        />
       </View>
-      <Header title={props.donationTitle} type={3} color={'#0A043C'} />
-      <Header title={'$' + props.price.toFixed(2)} type={3} color={'#156CF7'} />
+      <View style={style.donationInformation}>
+        <Header title={props.donationTitle} type={3} color={'#0A043C'} />
+        <View style={style.price}>
+          <Header
+            title={'$' + props.price.toFixed(2)}
+            type={3}
+            color={'#156CF7'}
+          />
+        </View>
+      </View>
     </View>
   );
 };
