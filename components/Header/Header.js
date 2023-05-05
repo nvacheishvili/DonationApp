@@ -15,7 +15,7 @@ const Header = props => {
   };
   return (
     <View>
-      <Text style={(styleToApply(), props.color && {color: props.color})}>
+      <Text style={[styleToApply(), props.color && {color: props.color}]}>
         {props.title}
       </Text>
     </View>
