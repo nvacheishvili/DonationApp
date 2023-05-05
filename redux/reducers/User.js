@@ -25,3 +25,4 @@ export const User = createSlice({
 // Exporting the reducers here from the "User" slice
 // makes them available to other parts of the app that want to use it
 export const {updateFirstName} = User.actions;
+export default User;
