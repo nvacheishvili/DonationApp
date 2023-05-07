@@ -27,7 +27,8 @@ const Home = () => {
   // Using the useDispatch hook to get a reference to the dispatch function
   // This function allows us to dispatch actions to update the store
   const dispatch = useDispatch();
-
+  const categories = useSelector(state => state.categories);
+  console.log(categories);
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <ScrollView showsVerticalScrollIndicator={false}>
