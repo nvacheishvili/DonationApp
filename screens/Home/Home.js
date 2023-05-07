@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   Pressable,
+  FlatList,
 } from 'react-native';
 
 // Importing the useSelector and useDispatch hooks from the React Redux library
@@ -14,10 +15,12 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 
 import Header from '../../components/Header/Header';
+import Search from '../../components/Search/Search';
+import Tab from '../../components/Tab/Tab';
+import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
-import Search from '../../components/Search/Search';
 
 const Home = () => {
   // Using the useSelector hook to select the "user" slice of the store
@@ -28,7 +31,7 @@ const Home = () => {
   // This function allows us to dispatch actions to update the store
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories);
-  console.log(categories);
+
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -57,6 +60,26 @@ const Home = () => {
             resizeMode={'contain'}
           />
         </Pressable>
+        <View style={style.categoryHeader}>
+          <Header title={'Select Category'} type={2} />
+        </View>
+        <View style={style.categories}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={categories.categories}
+            renderItem={({item}) => (
+              <View style={style.categoryItem} key={item.categoryId}>
+                <Tab
+                  tabId={item.categoryId}
+                  onPress={value => dispatch(updateSelectedCategoryId(value))}
+                  title={item.name}
+                  isInactive={item.categoryId !== categories.selectedCategoryId}
+                />
+              </View>
+            )}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
