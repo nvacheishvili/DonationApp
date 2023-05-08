@@ -31,10 +31,13 @@ const Home = () => {
   // This function allows us to dispatch actions to update the store
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories);
+  const donations = useSelector(state => state.donations);
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const categoryPageSize = 4;
+
+  console.log('this is our current donations state', donations);
 
   useEffect(() => {
     setIsLoadingCategories(true);
