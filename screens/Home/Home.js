@@ -19,12 +19,14 @@ import Search from '../../components/Search/Search';
 import Tab from '../../components/Tab/Tab';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 
+import {Routes} from '../../navigation/Routes';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
+import {updateSelectedDonationId} from '../../redux/reducers/Donations';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 
-const Home = () => {
+const Home = ({navigation}) => {
   // Using the useSelector hook to select the "user" slice of the store
   // This will return the user object containing firstName, lastName and userId fields
   const user = useSelector(state => state.user);
@@ -140,7 +142,10 @@ const Home = () => {
             {donationItems.map(value => (
               <View key={value.donationItemId} style={style.singleDonationItem}>
                 <SingleDonationItem
-                  onPress={selectedDonationId => {}}
+                  onPress={selectedDonationId => {
+                    dispatch(updateSelectedDonationId(selectedDonationId));
+                    navigation.navigate(Routes.SingleDonationItem);
+                  }}
                   donationItemId={value.donationItemId}
                   uri={value.image}
                   donationTitle={value.name}
