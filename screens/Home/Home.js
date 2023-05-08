@@ -32,12 +32,19 @@ const Home = () => {
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
+
+  const [donationItems, setDonationItems] = useState([]);
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const categoryPageSize = 4;
 
-  console.log('this is our current donations state', donations);
+  useEffect(() => {
+    const items = donations.items.filter(value =>
+      value.categoryIds.includes(categories.selectedCategoryId),
+    );
+    setDonationItems(items);
+  }, [categories.selectedCategoryId]);
 
   useEffect(() => {
     setIsLoadingCategories(true);
