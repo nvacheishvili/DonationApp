@@ -4,7 +4,7 @@ import Input from '../../components/Input/Input';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import BackButton from '../../components/BackButton/BackButton';
-
+import {createUser} from '../../api/user';
 import style from './style';
 import globalStyle from '../../assets/styles/globalStyle';
 
@@ -47,7 +47,10 @@ const Registration = ({navigation}) => {
           />
         </View>
         <View style={globalStyle.marginBottom24}>
-          <Button title={'Registration'} />
+          <Button
+            title={'Registration'}
+            onPress={async () => await createUser(fullName, email, password)}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
