@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import MainNavigation from './navigation/MainNavigation';
+import RootNavigation from './navigation/RootNavigation';
 
 // Importing the Provider component from the React Redux library
 // The Provider component is a higher-order component that provides the Redux store to all components in the app
@@ -17,7 +17,7 @@ const App = () => {
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
         <NavigationContainer>
-          <MainNavigation />
+          <RootNavigation />
         </NavigationContainer>
       </PersistGate>
     </Provider>
