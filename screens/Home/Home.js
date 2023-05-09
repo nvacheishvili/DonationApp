@@ -22,6 +22,8 @@ import SingleDonationItem from '../../components/SingleDonationItem/SingleDonati
 import {Routes} from '../../navigation/Routes';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 import {updateSelectedDonationId} from '../../redux/reducers/Donations';
+import {resetToInitialState} from '../../redux/reducers/User';
+import {logOut} from '../../api/user';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
@@ -80,11 +82,20 @@ const Home = ({navigation}) => {
               <Header title={user.displayName + ' 👋'} />
             </View>
           </View>
-          <Image
-            source={{uri: user.profileImage}}
-            style={style.profileImage}
-            resizeMode={'contain'}
-          />
+          <View>
+            <Image
+              source={{uri: user.profileImage}}
+              style={style.profileImage}
+              resizeMode={'contain'}
+            />
+            <Pressable
+              onPress={async () => {
+                dispatch(resetToInitialState());
+                await logOut();
+              }}>
+              <Header type={3} title={'Logout'} color={'#156CF7'} />
+            </Pressable>
+          </View>
         </View>
         <View style={style.searchBox}>
           <Search />
