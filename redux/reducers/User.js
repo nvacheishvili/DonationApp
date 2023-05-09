@@ -19,10 +19,13 @@ export const User = createSlice({
     resetToInitialState: () => {
       return initialState;
     },
+    updateToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
 });
 
 // Exporting the reducers here from the "User" slice
 // makes them available to other parts of the app that want to use it
-export const {logIn, resetToInitialState} = User.actions;
+export const {logIn, resetToInitialState, updateToken} = User.actions;
 export default User.reducer;

@@ -39,8 +39,6 @@ const Home = ({navigation}) => {
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
 
-  console.log(user);
-
   const [donationItems, setDonationItems] = useState([]);
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
@@ -117,10 +115,6 @@ const Home = ({navigation}) => {
               if (isLoadingCategories) {
                 return;
               }
-              console.log(
-                'User has reached the end and we are getting more data for page number ',
-                categoryPage,
-              );
               setIsLoadingCategories(true);
               let newData = pagination(
                 categories.categories,
