@@ -20,23 +20,21 @@ const Payment = ({navigation}) => {
   const [isReady, setIsReady] = useState(false);
   const {confirmPayment, loading} = useConfirmPayment();
   const user = useSelector(state => state.user);
+  const API_URL = 'your-firebase-endpoint/stripePayment';
 
   //Make sure to start your local server with nodemon index.js before running this, otherwise your local server will not receive your requests
   const fetchPaymentIntentClientSecret = async () => {
-    const response = await fetch(
-      'http://localhost:3000/create-payment-intent',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: user.email,
-          currency: 'usd',
-          amount: donationItemInformation.price * 100,
-        }),
+    const response = await fetch(API_URL + '/create-payment-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify({
+        email: user.email,
+        currency: 'usd',
+        amount: donationItemInformation.price * 100,
+      }),
+    });
     const {clientSecret} = await response.json();
     return clientSecret;
   };
