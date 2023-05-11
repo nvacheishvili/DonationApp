@@ -10,7 +10,7 @@ import store from './redux/store';
 import {PersistGate} from 'redux-persist/integration/react';
 import {persistor} from './redux/store';
 import {checkToken} from './api/user';
-
+import RNBootSplash from 'react-native-bootsplash';
 const App = () => {
   // Rendering the App component with a Provider and NavigationContainer component
   // We're passing in the store prop to the Provider component, making the store available to all child components
@@ -37,7 +37,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
-        <NavigationContainer>
+        <NavigationContainer onReady={() => RNBootSplash.hide()}>
           <RootNavigation />
         </NavigationContainer>
       </PersistGate>
