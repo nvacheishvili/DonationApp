@@ -1,4 +1,4 @@
-package com.donationapp;
+package com.donationappvache;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
